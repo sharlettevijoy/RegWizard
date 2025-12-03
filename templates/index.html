@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RegWizards</title>
+</head>
+<body>
+  <h1>Auto-Mapping Regulations to Internal Policies</h1>
+
+  <form method="get">
+    <label>Select Regulation ID:</label>
+    <select name="reg_id">
+      {% for rid in regulations %}
+        <option value="{{ rid }}" {% if rid == selected_reg %}selected{% endif %}>{{ rid }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Map to Policies</button>
+  </form>
+
+  {% if error %}
+    <p style="color: red;">Error running mapping: {{ error }}</p>
+  {% endif %}
+
+  {% if regulation_text %}
+    <h2>Regulation Text</h2>
+    <p>{{ regulation_text }}</p>
+  {% endif %}
+
+  {% if mapped_policies %}
+    <h2>Mapped Policies</h2>
+    <ul>
+      {% for pol in mapped_policies %}
+        <li>
+          <strong>{{ pol.id }} — {{ pol.title }}</strong><br>
+          <strong>Current:</strong> {{ pol.current }}<br>
+          <strong>Proposed:</strong> {{ pol.proposed }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% elif selected_reg %}
+    <p>No policies require changes based on this regulation.</p>
+  {% endif %}
+</body>
+</html>

@@ -34,6 +34,12 @@ LLM: Gemini 2.5 Flash
 Frontend: HTML + JS  
 Agents built using Google GenAI Python SDK
 
+### This project demonstrates several core GenAI agent concepts, including:
+* Multi-agent workflow (4 agents)
+* Sequential agent orchestration
+* LLM-powered rewriting using Gemini
+* Custom tools for retrieving regulations and policies
+
 ## How to Run Locally
 
 ### 1. Create `.env`
